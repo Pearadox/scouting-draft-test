@@ -20,3 +20,5 @@ scouting draft
 https://console.firebase.google.com/u/0/project/scouting-draft-test/database/scouting-draft-test/data~2Fstudents
 https://us-central1-scouting-draft-test.cloudfunctions.net/helloWorld
 https://us-central1-scouting-draft-test.cloudfunctions.net/getStudent
+
+https://firebase.google.com/docs/firestore/query-data/get-data

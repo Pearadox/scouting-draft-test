@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 admin.initializeApp();
-
+const db = admin.firestore();
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
 
@@ -14,9 +14,7 @@ export const helloWorld = functions.https.onRequest((request, response) => {
 
 export const getStudent = functions.https.onRequest((request, response) => {
   console.info("getStudent - begin");
-  admin
-    .firestore()
-    .collection("scouting-draft-test")
+  db.collection("scouting-draft-test")
     .doc("students")
     .get()
     .then(snapshot => {
