@@ -22,3 +22,11 @@ https://us-central1-scouting-draft-test.cloudfunctions.net/helloWorld
 https://us-central1-scouting-draft-test.cloudfunctions.net/getStudent
 
 https://firebase.google.com/docs/firestore/query-data/get-data
+
+missing the package.json why it is ignored ??
+
+[2008.02.08]
+
+add showStudent http call
+
+for example, target URL : https://us-central1-scouting-draft-test.cloudfunctions.net/showStudent/student/1

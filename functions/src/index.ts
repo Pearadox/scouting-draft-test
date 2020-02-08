@@ -1,26 +1,37 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 admin.initializeApp();
-const db = admin.firestore();
+
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
-
 export const helloWorld = functions.https.onRequest((request, response) => {
-  console.log("log-test as log");
-  console.warn("log-warn as log");
-  console.error("log-error as log");
-  response.send("Hello from FRC 5414.. we are going to win!!!!");
+  console.log("log-test as log on 02052000");
+  console.warn("log-warn as log  on 02052000");
+  console.error("log-error as log tresting ");
+  response.send("Hello from FRC 5414..!!!!");
 });
-
-export const getStudent = functions.https.onRequest((request, response) => {
-  console.info("getStudent - begin");
-  db.collection("scouting-draft-test")
-    .doc("students")
-    .get()
-    .then(snapshot => {
-      response.send(snapshot.data());
+//my-project.firebaseapp.com/event/123/
+//https://scouting-draft-test.firebaseio.com/students/0
+//target URL : https://us-central1-scouting-draft-test.cloudfunctions.net/showStudent/student/1
+exports.showStudent = functions.https.onRequest((req, res) => {
+  const params = req.url.split("/");
+  const studentId = params[2];
+  return admin
+    .database()
+    .ref("students/" + studentId)
+    .once("value", snapshot => {
+      const student = snapshot.val();
+      res.send(`
+            <!doctype html>
+            <html>
+                <head>
+                    <title>${student.name}</title>
+                </head>
+                <body>
+                    <h1>Student Name : [${student.name}] - Status [${student.status}]</h1>
+                </body>
+            </html>`);
     })
-    .catch(error => {
-      response.status(500).send("something went wong!");
-    });
+    .catch(err => console.error("error"))
+    .then(() => console.log("this will succeed"));
 });
