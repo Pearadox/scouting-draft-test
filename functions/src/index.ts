@@ -35,3 +35,42 @@ exports.showStudent = functions.https.onRequest((req, res) => {
     .catch(err => console.error("error"))
     .then(() => console.log("this will succeed"));
 });
+
+exports.showStudent2 = functions.https.onRequest((req, res) => {
+  const params = req.url.split("/");
+  const studentId = params[2];
+  return admin
+    .database()
+    .ref("students/" + studentId)
+    .once("value", snapshot => {
+      const student = snapshot.val();
+      res.send(`
+            <!doctype html>
+            <html>
+                <head>
+                    <title>${student.name}</title>
+                </head>
+                <body>
+                    <h1>Student Name : [${student.name}] - Status [${student.status}]</h1>
+                </body>
+            </html>`);
+    })
+    .catch(err => console.error("error"))
+    .then(() => console.log("this will succeed"));
+});
+
+exports.showStudents = functions.https.onRequest((req, res) => {
+  const temp = admin
+    .database()
+    .ref("students")
+    .once("value");
+  temp
+    .then(snap => {
+      console.info(snap.val());
+      // res.send(snap.val());
+    })
+    .catch(() => console.error("error"));
+
+  console.log("showStudents>>temp>>" + temp);
+  return res.status(200).send("text");
+});
