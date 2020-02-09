@@ -60,3 +60,8 @@ https://us-central1-scouting-draft-test.cloudfunctions.net/GetSingleByTypeAndId/
 
 //ByCompetitionIdAndMatchId
 https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-45
+
+#todo#
+
+1. revisit the use-case in the existing app
+2. webUI mockup
