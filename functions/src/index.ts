@@ -74,3 +74,82 @@ exports.showStudents = functions.https.onRequest((req, res) => {
   console.log("showStudents>>temp>>" + temp);
   return res.status(200).send("text");
 });
+
+exports.showStudents2 = functions.https.onRequest(async (req, res) => {
+  const temp = await admin
+    .database()
+    .ref("students")
+    .once("value");
+
+  console.log("showStudents2" + temp);
+  return res.status(200).send(temp);
+});
+
+exports.getAllByType = functions.https.onRequest(async (req, res) => {
+  const params = req.url.split("/");
+  const domainType = params[1];
+  const temp = await admin
+    .database()
+    .ref(domainType)
+    .once("value");
+
+  console.log("getAllByType | domainType >> " + domainType);
+  return res.status(200).send(temp);
+});
+
+exports.GetSingleByTypeAndId = functions.https.onRequest(async (req, res) => {
+  const params = req.url.split("/");
+  const domainType = params[1];
+  const domainEntityId = params[2];
+  const temp = await admin
+    .database()
+    .ref(domainType.concat("/", domainEntityId))
+    .once("value");
+
+  console.log("GetSingleByTypeAndId | domainType >> " + domainType);
+  return res.status(200).send(temp);
+});
+
+//https://scouting-draft-test.firebaseio.com/match-data/ftcmp/001-2714
+//https://scouting-draft-test.firebaseio.com/match-data/ftcmp/001-*
+exports.GetMatchData = functions.https.onRequest(async (req, res) => {
+  const params = req.url.split("/");
+  const competitionId = params[1];
+  const EventId = params[2];
+
+  console.log("GetMatchData | EventId-data >> " + EventId);
+
+  const temp = await admin
+    .database()
+    .ref("match-data/".concat(competitionId))
+    .orderByKey()
+    .startAt(EventId)
+    .endAt(EventId.concat("uf8ff"))
+    .once("value");
+
+  //TODO : filter on EventId as string widecard matching
+  console.log("GetMatchData | match-data >> " + competitionId);
+  return res.status(200).send(temp);
+});
+
+//https://scouting-draft-test.firebaseio.com/match-data/ftcmp/001-2714
+//https://scouting-draft-test.firebaseio.com/match-data/ftcmp/001-*
+exports.GetMatchData2 = functions.https.onRequest(async (req, res) => {
+  const params = req.url.split("/");
+  const competitionId = params[1];
+  const EventId = params[2];
+
+  console.log("GetMatchData | EventId-data >> " + EventId);
+
+  const temp = await admin
+    .database()
+    .ref("match-data/".concat(competitionId))
+    .orderByKey()
+    .startAt("001")
+    .endAt("001\uf8ff")
+    .once("value");
+
+  //TODO : filter on EventId as string widecard matching
+  console.log("GetMatchData | match-data >> " + competitionId);
+  return res.status(200).send(temp);
+});
