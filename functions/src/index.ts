@@ -131,3 +131,25 @@ exports.GetMatchData = functions.https.onRequest(async (req, res) => {
   console.log("GetMatchData | match-data >> " + competitionId);
   return res.status(200).send(temp);
 });
+
+//https://scouting-draft-test.firebaseio.com/match-data/ftcmp/001-2714
+//https://scouting-draft-test.firebaseio.com/match-data/ftcmp/001-*
+exports.GetMatchDataByTeam = functions.https.onRequest(async (req, res) => {
+  const params = req.url.split("/");
+  const competitionId = params[1];
+  const TeamId = params[2];
+
+  console.log("GetMatchDataByTeam | TeamId-data >> " + TeamId);
+
+  const temp = await admin
+    .database()
+    .ref("match-data/".concat(competitionId))
+    // .orderByKey()
+    .orderByChild("team_num")
+    .equalTo(TeamId)
+    .once("value");
+
+  //TODO : filter on EventId as string widecard matching
+  console.log("GetMatchDataByTeam | TeamId-data >> " + TeamId);
+  return res.status(200).send(temp);
+});

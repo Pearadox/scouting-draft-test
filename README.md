@@ -61,6 +61,9 @@ https://us-central1-scouting-draft-test.cloudfunctions.net/GetSingleByTypeAndId/
 //ByCompetitionIdAndMatchId
 https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-45
 
+##GetMatchDataByTeamAndCompetition##
+https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchDataByTeamAndCompetition/ftcmp/1255
+
 #todo#
 
 1. revisit the use-case in the existing app
