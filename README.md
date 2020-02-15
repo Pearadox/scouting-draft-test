@@ -115,8 +115,10 @@ Scouting Draft Web Api handles
 
 - Root Page : https://console.firebase.google.com/u/0/project/scouting-draft-test/overview
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/
-- all 6 matches in match [001] in competition [gal] the https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-
-- https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-45
+- all 6 matches in match [001] in competition [gal]
+  -- https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-
+- one result (as there is only 1 team-name starting with '45') :- with string matching logic
+  -- https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-45
 
 ## Sample Api example - GetMatchDataByTeamAndCompetition()
 
