@@ -109,12 +109,13 @@ Scouting Draft Web Api handles
 
   ```powershell
 
-      GET /GetSingleByTypeAndId/{EntityType}/{EntityId}
+      GET /GetSingleByTypeAndId/{Competition-Id}/{match-id-prefix}
 
   ```
 
 - Root Page : https://console.firebase.google.com/u/0/project/scouting-draft-test/overview
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/
+- all 6 matches in match [001] in competition [gal] the https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-
 - https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-45
 
 ## Sample Api example - GetMatchDataByTeamAndCompetition()
