@@ -15,7 +15,7 @@
 
 Scouting Draft Web Api handles
 
-- get all for all entities (type :
+- get all for given entity ( type in 2019 {
   students,
   devices,
   competitions,
@@ -23,10 +23,10 @@ Scouting Draft Web Api handles
   pit-data,
   matches,
   maatch-data,
-  current-match)
+  current-match})
 
-- get single for all entities
-- get single match result for specific competition and match
+- get single item for given entity
+- get single match result for given competition and match
 - get all match result for specific team in specfic competition
 - [future] filter by given param (for example, HAB Level >= 2)
 - [future] filter by given param (for example, anels/balls during SS (Auto), Cargo-Ship panels/balls during SS, Rocket scoring during SS)
