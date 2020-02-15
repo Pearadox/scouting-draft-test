@@ -1,5 +1,3 @@
-# scouting-draft-test
-
 [[_TOC_]]
 
 ## Scouting Draft - Use Cases
