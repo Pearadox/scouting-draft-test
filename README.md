@@ -2,8 +2,13 @@
 1. [Scouting Draft](#use-case)
 2. [Tech-stacks](#techs-tacks)
 3. [Installation](#installation)
-3. [Installation](#installation)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+   [ For dev machine](#dev-machine)
+4. [Api - beginner](#beginner)
+5. [Api : getAllByType()](#getAllByType)
+6. [Api : GetSingleByTypeAndId()](#GetSingleByTypeAndId)
+7. [Api : GetMatchData()](#GetMatchData)
+7. [Api : GetMatchDataByTeamAndCompetition()](#GetMatchDataByTeamAndCompetition)
+7. [TODO/InProgress](#TODO)
 
 
 ## Scouting Draft - Use Cases <a name="use-case"></a>
@@ -58,14 +63,14 @@ Scouting Draft Web Api handles
 
   ```
 
-## Sample Api example - for beginner
+## Api - for beginner  <a name="beginner"></a>
 
 - Root Page : https://console.firebase.google.com/u/0/project/scouting-draft-test/overview
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/scouting-draft-test/data~2Fmatch-data
 - (for beginner) helloworld : https://us-central1-scouting-draft-test.cloudfunctions.net/helloWorld
 - (for beginner) Get Single Student : https://us-central1-scouting-draft-test.cloudfunctions.net/getStudent
 
-## Sample Api example - getAllByType()
+## Api - getAllByType()  <a name="getAllByType"></a>
 
 - this will return all the reords by given type
 
@@ -88,7 +93,7 @@ Scouting Draft Web Api handles
 - https://us-central1-scouting-draft-test.cloudfunctions.net/getAllByType/teams
 - https://us-central1-scouting-draft-test.cloudfunctions.net/getAllByType/pit-data
 
-## Sample Api example - GetSingleByTypeAndId()
+## Api - GetSingleByTypeAndId()  <a name="GetSingleByTypeAndId"></a>
 
 - this will return a single reord by given type and id
 
@@ -106,7 +111,7 @@ Scouting Draft Web Api handles
 - https://us-central1-scouting-draft-test.cloudfunctions.net/GetSingleByTypeAndId/match-data/ftcmp
 - https://us-central1-scouting-draft-test.cloudfunctions.net/GetSingleByTypeAndId/match-data/test
 
-## Sample Api example - GetMatchData()
+## Api - GetMatchData()  <a name="GetMatchData"></a>
 
 - this will return all match reord (~6 matches in 2019) by given competition {Competition-Id} and event-Id {match-id-prefix} (\*)
 - (\*) : it is doing the string matching as wide-card for any match name matching as prefix.
@@ -124,7 +129,7 @@ Scouting Draft Web Api handles
 - one result (as there is only 1 team-name starting with '45') :- with string matching logic
   -- https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-45
 
-## Sample Api example - GetMatchDataByTeamAndCompetition()
+## Api - GetMatchDataByTeamAndCompetition()  <a name="GetMatchDataByTeamAndCompetition"></a>
 
 - this will return all match reord for a given team and in a given competition {Competition-Id}
 
@@ -138,7 +143,8 @@ Scouting Draft Web Api handles
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/
 - https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchDataByTeamAndCompetition/ftcmp/1255
 
-## TODO/InProgress
+## TODO/InProgress <a name="TODO"></a>
+
 
 - revisit the use-case in the existing app
 - webUI mockup
