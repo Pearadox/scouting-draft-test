@@ -1,6 +1,12 @@
-[[_TOC_]]
+# Table of Contents
+1. [Scouting Draft](#use-case)
+2. [Tech-stacks](#techs-tacks)
+3. [Installation](#installation)
+3. [Installation](#installation)
+4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
 
-## Scouting Draft - Use Cases
+
+## Scouting Draft - Use Cases <a name="use-case"></a>
 
 Scouting Draft Web Api handles
 
@@ -20,15 +26,15 @@ Scouting Draft Web Api handles
 - [future] filter by given param (for example, HAB Level >= 2)
 - [future] filter by given param (for example, anels/balls during SS (Auto), Cargo-Ship panels/balls during SS, Rocket scoring during SS)
 
-## Tech-stacks
+## Tech-stacks <a name="tech-stacks"></a>
 
 - firebase real-time database
 - node
 - firebase functions
 
-## Installation
+## Installation  <a name="installation"></a>
 
-### For dev machine
+### For dev machine <a name="dev-machine"></a>
 
 - Recommended: just the latest node and npm, then open in PowerShell:
 
