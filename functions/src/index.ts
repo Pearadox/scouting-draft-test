@@ -55,12 +55,32 @@ exports.GetMatchData = functions.https.onRequest(async (req, res) => {
     .endAt(EventId.concat("uf8ff"))
     .once("value");
 
-  //TODO : filter on EventId as string widecard matching
   console.log("GetMatchData | match-data >> " + competitionId);
   return res.status(200).send(temp);
 });
 
 exports.GetMatchDataByTeamAndCompetition = functions.https.onRequest(
+  async (req, res) => {
+    const params = req.url.split("/");
+    const competitionId = params[1];
+    const TeamId = params[2];
+
+    console.log("GetMatchDataByTeamAndCompetition | TeamId-data >> " + TeamId);
+
+    const temp = await admin
+      .database()
+      .ref("match-data/".concat(competitionId))
+      // .orderByKey()
+      .orderByChild("team_num")
+      .equalTo(TeamId)
+      .once("value");
+
+    console.log("GetMatchDataByTeamAndCompetition | TeamId-data >> " + TeamId);
+    return res.status(200).send(temp);
+  }
+);
+
+exports.GetMatchDataByTeamForAllCompetitions = functions.https.onRequest(
   async (req, res) => {
     const params = req.url.split("/");
     const competitionId = params[1];
