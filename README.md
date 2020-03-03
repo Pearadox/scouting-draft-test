@@ -1,4 +1,5 @@
 # Table of Contents
+
 1. [Scouting Draft](#use-case)
 2. [Tech-stacks](#techs-tacks)
 3. [Installation](#installation)
@@ -7,9 +8,9 @@
 5. [Api : getAllByType()](#getAllByType)
 6. [Api : GetSingleByTypeAndId()](#GetSingleByTypeAndId)
 7. [Api : GetMatchData()](#GetMatchData)
-7. [Api : GetMatchDataByTeamAndCompetition()](#GetMatchDataByTeamAndCompetition)
-7. [TODO/InProgress](#TODO)
-
+8. [Api : GetMatchDataByTeamAndCompetition()](#GetMatchDataByTeamAndCompetition)
+9. [Api : getAllStudentsToCsv()](#getAllStudentsToCsv)
+10. [TODO/InProgress](#TODO)
 
 ## Scouting Draft - Use Cases <a name="use-case"></a>
 
@@ -37,7 +38,7 @@ Scouting Draft Web Api handles
 - node
 - firebase functions
 
-## Installation  <a name="installation"></a>
+## Installation <a name="installation"></a>
 
 ### For dev machine <a name="dev-machine"></a>
 
@@ -49,6 +50,8 @@ Scouting Draft Web Api handles
   firebase init
   npm install firebase-admin@latest firebase-functions@latest //get the latest code
   firebase deploy
+  firebase deploy --only functions
+  firebase deploy --only functions:getAllByTypeToCsv,functions:GetMatchDataByTeamAndCompetition
   ```
 
 - for testing purpose, recommended to create your own firebase project:
@@ -63,14 +66,14 @@ Scouting Draft Web Api handles
 
   ```
 
-## Api - for beginner  <a name="beginner"></a>
+## Api - for beginner <a name="beginner"></a>
 
 - Root Page : https://console.firebase.google.com/u/0/project/scouting-draft-test/overview
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/scouting-draft-test/data~2Fmatch-data
 - (for beginner) helloworld : https://us-central1-scouting-draft-test.cloudfunctions.net/helloWorld
 - (for beginner) Get Single Student : https://us-central1-scouting-draft-test.cloudfunctions.net/getStudent
 
-## Api - getAllByType()  <a name="getAllByType"></a>
+## Api - getAllByType() <a name="getAllByType"></a>
 
 - this will return all the reords by given type
 
@@ -93,7 +96,7 @@ Scouting Draft Web Api handles
 - https://us-central1-scouting-draft-test.cloudfunctions.net/getAllByType/teams
 - https://us-central1-scouting-draft-test.cloudfunctions.net/getAllByType/pit-data
 
-## Api - GetSingleByTypeAndId()  <a name="GetSingleByTypeAndId"></a>
+## Api - GetSingleByTypeAndId() <a name="GetSingleByTypeAndId"></a>
 
 - this will return a single reord by given type and id
 
@@ -111,7 +114,7 @@ Scouting Draft Web Api handles
 - https://us-central1-scouting-draft-test.cloudfunctions.net/GetSingleByTypeAndId/match-data/ftcmp
 - https://us-central1-scouting-draft-test.cloudfunctions.net/GetSingleByTypeAndId/match-data/test
 
-## Api - GetMatchData()  <a name="GetMatchData"></a>
+## Api - GetMatchData() <a name="GetMatchData"></a>
 
 - this will return all match reord (~6 matches in 2019) by given competition {Competition-Id} and event-Id {match-id-prefix} (\*)
 - (\*) : it is doing the string matching as wide-card for any match name matching as prefix.
@@ -129,7 +132,7 @@ Scouting Draft Web Api handles
 - one result (as there is only 1 team-name starting with '45') :- with string matching logic
   -- https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchData/gal/001-45
 
-## Api - GetMatchDataByTeamAndCompetition()  <a name="GetMatchDataByTeamAndCompetition"></a>
+## Api - GetMatchDataByTeamAndCompetition() <a name="GetMatchDataByTeamAndCompetition"></a>
 
 - this will return all match reord for a given team and in a given competition {Competition-Id}
 
@@ -143,8 +146,21 @@ Scouting Draft Web Api handles
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/
 - https://us-central1-scouting-draft-test.cloudfunctions.net/GetMatchDataByTeamAndCompetition/ftcmp/1255
 
-## TODO/InProgress <a name="TODO"></a>
+## Api - getAllStudentsToCsv() <a name="getAllStudentsToCsv"></a>
 
+- this will downlaod a CSV file which contains all the student
+
+  ```powershell
+
+      GET /GetMatchDataByTeamAndCompetition/getAllStudentsToCsv
+
+  ```
+
+- Root Page : https://console.firebase.google.com/u/0/project/scouting-draft-test/overview
+- RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/
+- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllStudentsToCsv
+
+## TODO/InProgress <a name="TODO"></a>
 
 - revisit the use-case in the existing app
 - webUI mockup
