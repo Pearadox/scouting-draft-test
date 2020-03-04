@@ -140,3 +140,47 @@ exports.getAllStudentsToCsv = functions.https.onRequest(
     console.log("getAllStudentsToCsv - end");
   }
 );
+
+exports.getAllStudentsToCsv2 = functions.https.onRequest(
+  async (req, response) => {
+    let studentsArray: Student[] = [];
+
+    await admin
+      .database()
+      .ref("students")
+      .once(
+        "value",
+        function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            const key = childSnapshot.key;
+            const childData = childSnapshot.val();
+            studentsArray.push(
+              new Student(key, childData.name, childData.status)
+            );
+          });
+        },
+        function(error2) {
+          console.error(error2);
+        }
+      );
+
+    try {
+      const { Parser } = require("json2csv");
+      const csv = new Parser(["key", "name", "status"]).parse(studentsArray);
+      response.setHeader(
+        "Content-disposition",
+        "attachment; filename=students.csv"
+      );
+      response.set("Content-Type", "text/csv");
+      response.status(200).send(csv);
+    } catch (err) {
+      console.error(err);
+    }
+    console.log("getAllStudentsToCsv - end");
+  }
+);
+
+//TODO
+// 1) find the generic approach (seems working)
+// 1.a) without specifiying the propertt list
+// 2) how to GetMatchDataByTeamForAllCompetitions

@@ -152,7 +152,7 @@ Scouting Draft Web Api handles
 
   ```powershell
 
-      GET /GetMatchDataByTeamAndCompetition/getAllStudentsToCsv
+      GET /getAllStudentsToCsv
 
   ```
 
