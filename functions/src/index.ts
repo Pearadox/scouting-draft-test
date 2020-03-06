@@ -1,6 +1,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { Student } from "./student";
+import { Student, Match } from "./student";
 
 admin.initializeApp();
 
@@ -104,7 +104,7 @@ exports.GetMatchDataByTeamForAllCompetitions = functions.https.onRequest(
 
 exports.getAllStudentsToCsv = functions.https.onRequest(
   async (req, response) => {
-    let studentsArray: Student[] = [];
+    const studentsArray: Student[] = [];
 
     await admin
       .database()
@@ -141,21 +141,29 @@ exports.getAllStudentsToCsv = functions.https.onRequest(
   }
 );
 
-exports.getAllStudentsToCsv2 = functions.https.onRequest(
+exports.getAllMatchesToCsv = functions.https.onRequest(
   async (req, response) => {
-    let studentsArray: Student[] = [];
+    const matches: Match[] = [];
 
     await admin
       .database()
-      .ref("students")
+      // .ref("match-data/".concat(competitionId))
+      .ref("match-data/ftcmp")
       .once(
         "value",
         function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
-            const key = childSnapshot.key;
             const childData = childSnapshot.val();
-            studentsArray.push(
-              new Student(key, childData.name, childData.status)
+            matches.push(
+              new Match(
+                childData.team_num,
+                childData.tele_CargoLPan1,
+                childData.tele_CargoLPan2,
+                childData.tele_CargoLPan3,
+                childData.tele_CargoRPan1,
+                childData.tele_CargoRPan2,
+                childData.tele_CargoRPan3
+              )
             );
           });
         },
@@ -166,17 +174,27 @@ exports.getAllStudentsToCsv2 = functions.https.onRequest(
 
     try {
       const { Parser } = require("json2csv");
-      const csv = new Parser(["key", "name", "status"]).parse(studentsArray);
+      const csv = new Parser([
+        "team_num",
+        "tele_CargoLPan1",
+        "tele_CargoLPan2",
+        "tele_CargoLPan3",
+        "tele_CargoRPan1",
+        "tele_CargoRPan2",
+        "tele_CargoRPan3",
+        "CargoLPanCount",
+        "CargoRPanCount"
+      ]).parse(matches);
       response.setHeader(
         "Content-disposition",
-        "attachment; filename=students.csv"
+        "attachment; filename=match.csv"
       );
       response.set("Content-Type", "text/csv");
       response.status(200).send(csv);
     } catch (err) {
       console.error(err);
     }
-    console.log("getAllStudentsToCsv - end");
+    console.log("getAllMatchesToCsv - end");
   }
 );
 

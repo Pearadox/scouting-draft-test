@@ -10,7 +10,8 @@
 7. [Api : GetMatchData()](#GetMatchData)
 8. [Api : GetMatchDataByTeamAndCompetition()](#GetMatchDataByTeamAndCompetition)
 9. [Api : getAllStudentsToCsv()](#getAllStudentsToCsv)
-10. [TODO/InProgress](#TODO)
+10. [Api : getAllMatchesWithTargetValueToCsv()](#getAllMatchesWithTargetValueToCsv)
+11. [TODO/InProgress](#TODO)
 
 ## Scouting Draft - Use Cases <a name="use-case"></a>
 
@@ -159,6 +160,18 @@ Scouting Draft Web Api handles
 - Root Page : https://console.firebase.google.com/u/0/project/scouting-draft-test/overview
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/
 - https://us-central1-scouting-draft-test.cloudfunctions.net/getAllStudentsToCsv
+
+## Api - getAllMatchesWithTargetValueToCsv() <a name="getAllMatchesWithTargetValueToCsv"></a>
+
+- this will downlaod a CSV file which contains all the student
+
+  ```powershell
+
+      GET /getAllMatchesWithTargetValueToCsv
+
+  ```
+
+- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllMatchesWithTargetValueToCsv
 
 ## TODO/InProgress <a name="TODO"></a>
 
