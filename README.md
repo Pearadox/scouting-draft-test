@@ -177,3 +177,7 @@ Scouting Draft Web Api handles
 
 - revisit the use-case in the existing app
 - webUI mockup
+
+--junk below--
+firebase deploy --only functions:getAllByTypeToCsv,functions:getAllMatchesWithTargetValueToCsv
+https://github.com/Pearadox/Scout-19_5414/blob/master/app/src/main/java/com/pearadox/scout_5414/matchData.java
