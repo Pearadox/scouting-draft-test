@@ -259,6 +259,68 @@ function isLargerThanTwo(element, index, array) {
   return element.CargoLPanCount >= 2;
 }
 
+exports.getAllMatchesWithTargetValueToCsv2 = functions.https.onRequest(
+  async (req, response) => {
+    const params = req.url.split("/");
+    const limitValue = Number(params[1]);
+    const matches: Match[] = [];
+
+    await admin
+      .database()
+      // .ref("match-data/".concat(competitionId))
+      .ref("match-data/ftcmp")
+      .once(
+        "value",
+        function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            const childData = childSnapshot.val();
+            matches.push(
+              new Match(
+                childData.team_num,
+                childData.tele_CargoLPan1,
+                childData.tele_CargoLPan2,
+                childData.tele_CargoLPan3,
+                childData.tele_CargoRPan1,
+                childData.tele_CargoRPan2,
+                childData.tele_CargoRPan3
+              )
+            );
+          });
+        },
+        function(error2) {
+          console.error(error2);
+        }
+      );
+
+    try {
+      const { Parser } = require("json2csv");
+      const csv = new Parser([
+        "team_num",
+        "tele_CargoLPan1",
+        "tele_CargoLPan2",
+        "tele_CargoLPan3",
+        "tele_CargoRPan1",
+        "tele_CargoRPan2",
+        "tele_CargoRPan3",
+        "CargoLPanCount",
+        "CargoRPanCount"
+      ]).parse(
+        matches.filter(function(e) {
+          return e.CargoLPanCount >= limitValue;
+        })
+      );
+      response.setHeader(
+        "Content-disposition",
+        "attachment; filename=match.csv"
+      );
+      response.set("Content-Type", "text/csv");
+      response.status(200).send(csv);
+    } catch (err) {
+      console.error(err);
+    }
+    console.log("getAllMatchesToCsv - end");
+  }
+);
 //TODO
 // 1) find the generic approach (seems working)
 // 1.a) without specifiying the propertt list

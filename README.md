@@ -10,7 +10,7 @@
 7. [Api : GetMatchData()](#GetMatchData)
 8. [Api : GetMatchDataByTeamAndCompetition()](#GetMatchDataByTeamAndCompetition)
 9. [Api : getAllStudentsToCsv()](#getAllStudentsToCsv)
-10. [Api : getAllMatchesWithTargetValueToCsv()](#getAllMatchesWithTargetValueToCsv)
+10. [Api : getMatchByTargetValueToCsv()](#getMatchByTargetValueToCsv)
 11. [TODO/InProgress](#TODO)
 
 ## Scouting Draft - Use Cases <a name="use-case"></a>
@@ -161,17 +161,21 @@ Scouting Draft Web Api handles
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/
 - https://us-central1-scouting-draft-test.cloudfunctions.net/getAllStudentsToCsv
 
-## Api - getAllMatchesWithTargetValueToCsv() <a name="getAllMatchesWithTargetValueToCsv"></a>
+## Api - getMatchByTargetValueToCsv() <a name="getMatchByTargetValueToCsv"></a>
 
-- this will downlaod a CSV file which contains all the student
+- this will downlaod a CSV file which contains all the match with the target value
 
   ```powershell
 
-      GET /getAllMatchesWithTargetValueToCsv
+      GET /getMatchByTargetValueToCsv/{target}
 
   ```
 
-- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllMatchesWithTargetValueToCsv
+{inprogress} :- we only filter the {tele_CargoLPan for now
+
+- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllMatchesWithTargetValueToCsv/2
+
+- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllMatchesWithTargetValueToCsv/3
 
 ## TODO/InProgress <a name="TODO"></a>
 
