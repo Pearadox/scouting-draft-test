@@ -161,21 +161,21 @@ Scouting Draft Web Api handles
 - RealTime DB: https://console.firebase.google.com/u/0/project/scouting-draft-test/database/
 - https://us-central1-scouting-draft-test.cloudfunctions.net/getAllStudentsToCsv
 
-## Api - getMatchByTargetValueToCsv() <a name="getMatchByTargetValueToCsv"></a>
+## Api - getMatchByTargetValueToCsv2() <a name="getMatchByTargetValueToCsv"></a>
 
 - this will downlaod a CSV file which contains all the match with the target value
 
   ```powershell
 
-      GET /getMatchByTargetValueToCsv/{target}
+      GET /getMatchByTargetValueToCsv2/{target-value}
 
   ```
 
-{inprogress} :- we only filter the {tele_CargoLPan for now
+{inprogress} :- only filter the tele_CargoLPan for now with the {target-value}
 
-- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllMatchesWithTargetValueToCsv/2
+- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllMatchesWithTargetValueToCsv2/2
 
-- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllMatchesWithTargetValueToCsv/3
+- https://us-central1-scouting-draft-test.cloudfunctions.net/getAllMatchesWithTargetValueToCsv2/3
 
 ## TODO/InProgress <a name="TODO"></a>
 
